@@ -44,7 +44,7 @@ public class ReservationServiceImpl implements ReservationService {
 
             reservationRepository.save(reservation);
         } catch (RuntimeException e) {
-            System.err.println("Error creating reservation: " + e.getMessage());
+            System.out.println("Error creating reservation: " + e.getMessage());
             throw new RuntimeException("Failed to create reservation: " + e.getMessage());
         }
     }
@@ -60,7 +60,7 @@ public class ReservationServiceImpl implements ReservationService {
 
             reservationRepository.deleteById(id);
         } catch (RuntimeException e) {
-            System.err.println("Error deleting reservation: " + e.getMessage());
+            System.out.println("Error deleting reservation: " + e.getMessage());
             throw new RuntimeException("Failed to delete reservation: " + e.getMessage());
         }
     }
