@@ -38,14 +38,17 @@ public class ReservationServiceImpl implements ReservationService {
                 throw new RuntimeException("Room not found");
             }
 
-            if (reservationRepository.hasOverlappingReservations(reservation.getRoomId(), reservation.getCheckInDate(), reservation.getCheckOutDate())) {
-                throw new RuntimeException("Room is already reserved for the given dates");
+            if (reservationRepository.hasOverlappingReservations(
+                    reservation.getRoomId(),
+                    reservation.getCheckInDate(),
+                    reservation.getCheckOutDate())) {
+                throw new RuntimeException("Room not available - already reserved for the given dates");
             }
 
             reservationRepository.save(reservation);
         } catch (RuntimeException e) {
             System.out.println("Error creating reservation: " + e.getMessage());
-            throw new RuntimeException("Failed to create reservation: " + e.getMessage());
+            throw new RuntimeException(e.getMessage());
         }
     }
 
